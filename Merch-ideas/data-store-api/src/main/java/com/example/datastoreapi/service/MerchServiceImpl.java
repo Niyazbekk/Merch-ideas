@@ -44,6 +44,21 @@ public class MerchServiceImpl implements MerchService {
                 .map(merch -> modelMapper.map(merch, MerchResponse.class)).collect(Collectors.toList());
     }
 
+//    @Override
+//    public List<MerchResponse> getMerchByBrandName(String brandName) {
+//        return merchRepository.getMerchEntitiesByBrandName(brandName).stream().
+//                map(merchEntity -> modelMapper.map(merchEntity,MerchResponse.class)).
+//                collect(Collectors.toList());
+//
+//    }
+
+    @Override
+    public List<MerchResponse> getMerchByCategory(String category) {
+        return merchRepository.getMerchEntitiesByCategory(category).stream().
+                map(merchEntity -> modelMapper.map(merchEntity,MerchResponse.class)).
+                collect(Collectors.toList());
+    }
+
     @Override
     public MerchResponse updateMerch(MerchRequest merchRequest) {
         MerchEntity merchEntity = modelMapper.map(merchRequest, MerchEntity.class);

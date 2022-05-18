@@ -23,6 +23,10 @@ public class MerchController {
     MerchResponse getMerchById(@RequestParam String merchId) {
         return merchService.getMerchById(merchId);
     }
+    @GetMapping("/filter")
+    List<MerchResponse> getMerchByCategory(@RequestParam String category){
+        return merchService.getMerchByCategory(category);
+    }
 
     @GetMapping("/all")
     List<MerchResponse> getAllMerch() {

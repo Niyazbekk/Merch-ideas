@@ -1,5 +1,6 @@
 package com.example.datastoreapi.entity;
 
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.repository.CrudRepository;
 
 import javax.transaction.Transactional;
@@ -9,6 +10,8 @@ public interface MerchRepository extends CrudRepository<MerchEntity, Long> {
     List<MerchEntity> getMerchEntitiesBy();
 
     MerchEntity getMerchEntityByMerchId(String merchId);
+    List<MerchEntity> getMerchEntitiesByCategory(String category);
+//    List<MerchEntity> getMerchEntitiesByBrandName(String brandName);
 
     @Transactional
     void deleteMerchEntityByMerchId(String merchId);

@@ -12,6 +12,9 @@ public interface MerchService {
 
     List<MerchResponse> getAllMerch();
 
+//    List<MerchResponse> getMerchByBrandName(String brandName);
+    List<MerchResponse> getMerchByCategory(String category);
+
     MerchResponse updateMerch(MerchRequest merchRequest);
 
     void deleteMerchById(String merchId);
