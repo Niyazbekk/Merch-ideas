@@ -19,4 +19,5 @@ public class CommentRequest {
     @NotNull
     private String merchId;
     private String parentComment;
+
 }
