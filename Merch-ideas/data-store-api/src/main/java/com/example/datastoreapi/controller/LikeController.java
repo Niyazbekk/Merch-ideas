@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Random;
 
 @RestController
+@RequestMapping("/merch")
 public class LikeController {
     @Autowired
     LikeRepository likeRepository;
