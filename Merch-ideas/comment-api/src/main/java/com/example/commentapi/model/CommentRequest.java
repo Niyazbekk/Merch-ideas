@@ -12,10 +12,13 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 public class CommentRequest {
     private String commentId;
+
     @NotNull
     private String text;
+
     @NotNull
     private String userId;
+
     @NotNull
     private String merchId;
     private String parentComment;

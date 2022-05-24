@@ -25,6 +25,6 @@ public class CommentEntity {
     @Field(type=FieldType.Keyword)
     private String merchId;
     @Field(type = FieldType.Keyword)
-    private String parentComment; //null, sss
+    private String parentCommentId; //null, sss
 }
 

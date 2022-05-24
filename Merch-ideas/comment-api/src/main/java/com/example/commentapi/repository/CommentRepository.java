@@ -12,4 +12,15 @@ public interface CommentRepository extends ElasticsearchRepository<CommentEntity
     CommentEntity getCommentEntitiesByCommentId(String commentId);
 
     void deleteCommentEntitiesByCommentId(String commentId);
+
+
+    List<CommentEntity> getCommentEntitiesByParentCommentIdIsNullAndMerchId(String merchId);
+
+    List<CommentEntity> getCommentEntitiesByParentCommentId(String commentId);
+
+    List<CommentEntity> getCommentEntitiesByParentCommentIdNotNull();
+
+    List<CommentEntity> getCommentEntitiesByMerchId(String merchId);
+
+
 }

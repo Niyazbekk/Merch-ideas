@@ -57,4 +57,34 @@ public class CommentServiceImpl implements  CommentService{
     commentRepository.deleteCommentEntitiesByCommentId(commentId);
 
     }
+
+    @Override
+    public List<CommentResponse> getCommentEntitiesByParentCommentIdIsNullAndAndEMerchId(String merchId) {
+        return commentRepository.getCommentEntitiesByParentCommentIdIsNullAndMerchId(merchId).stream()
+                .map(comment -> modelMapper.map(comment, CommentResponse.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CommentResponse> getAllRepliesOfComment(String commentId) {
+          return commentRepository.getCommentEntitiesByParentCommentId(commentId).stream()
+                .map(comment -> modelMapper.map(comment, CommentResponse.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CommentResponse> getListOfReplyComments() {
+        return commentRepository.getCommentEntitiesByParentCommentIdNotNull().stream()
+                .map(comment -> modelMapper.map(comment, CommentResponse.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CommentResponse> getCommentsByMerchId(String merchId) {
+        return commentRepository.getCommentEntitiesByMerchId(merchId).stream()
+                .map(comment -> modelMapper.map(comment, CommentResponse.class))
+                .collect(Collectors.toList());
+    }
+
+
 }

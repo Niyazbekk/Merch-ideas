@@ -9,8 +9,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CommentResponse {
     private String text;
+
     private String userId;
+
     private String merchId;
+
     private String parentComment;
 
 }

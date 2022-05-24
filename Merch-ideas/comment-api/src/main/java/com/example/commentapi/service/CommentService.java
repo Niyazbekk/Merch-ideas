@@ -12,5 +12,17 @@ public interface CommentService {
     List<CommentResponse> getAllComments();
     void deletePaymentById(String commentId);
 
+    List<CommentResponse> getCommentEntitiesByParentCommentIdIsNullAndAndEMerchId(String merchId);
+
+    List<CommentResponse> getAllRepliesOfComment(String commentId);
+
+    List<CommentResponse> getListOfReplyComments();
+
+    List<CommentResponse> getCommentsByMerchId(String merchId);
+
+
+
+
+
 
 }
