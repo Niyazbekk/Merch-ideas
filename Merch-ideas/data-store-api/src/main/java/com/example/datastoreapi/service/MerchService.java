@@ -1,5 +1,7 @@
 package com.example.datastoreapi.service;
 
+import com.example.datastoreapi.model.CategoryRequest;
+import com.example.datastoreapi.model.CategoryResponse;
 import com.example.datastoreapi.model.MerchRequest;
 import com.example.datastoreapi.model.MerchResponse;
 
@@ -12,8 +14,7 @@ public interface MerchService {
 
     List<MerchResponse> getAllMerch();
 
-//    List<MerchResponse> getMerchByBrandName(String brandName);
-    List<MerchResponse> getMerchByCategory(String category);
+    List<MerchResponse> getMerchByCategoryId(Long categoryId);
 
     MerchResponse updateMerch(MerchRequest merchRequest);
 

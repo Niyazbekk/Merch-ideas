@@ -10,12 +10,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MerchRequest {
     private Long id;
+
     private String merchId;
+
     private String header;
+
     private String description;
+
     private String brandName;
+
     private String imageUrl;
-    private String category;
+
+    private Long category;
+
     private int votes;
+
     private String ownerId;
 }

@@ -1,5 +1,6 @@
 package com.example.datastoreapi.controller;
 
+import com.example.datastoreapi.model.MerchDTO;
 import com.example.datastoreapi.model.MerchRequest;
 import com.example.datastoreapi.model.MerchResponse;
 import com.example.datastoreapi.service.MerchService;
@@ -24,8 +25,8 @@ public class MerchController {
         return merchService.getMerchById(merchId);
     }
     @GetMapping("/filter")
-    List<MerchResponse> getMerchByCategory(@RequestParam String category){
-        return merchService.getMerchByCategory(category);
+    List<MerchResponse> getMerchByCategory(@RequestParam(name="categoryId") Long id){
+        return merchService.getMerchByCategoryId(id);
     }
 
     @GetMapping("/all")
@@ -45,4 +46,6 @@ public class MerchController {
         merchService.deleteMerchById(merchId);
         return "merch successfully deleted";
     }
+//    @PostMapping("/email")
+//    public MerchDTO<String> sendMerchToEmail(@Re)
 }

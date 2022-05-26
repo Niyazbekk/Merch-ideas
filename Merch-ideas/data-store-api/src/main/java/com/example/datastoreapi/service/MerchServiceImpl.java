@@ -1,7 +1,12 @@
 package com.example.datastoreapi.service;
 
+import com.example.datastoreapi.entity.CategoryEntity;
+import com.example.datastoreapi.entity.CategoryRepository;
 import com.example.datastoreapi.entity.MerchEntity;
 import com.example.datastoreapi.entity.MerchRepository;
+import com.example.datastoreapi.exception.ResourceNotFoundException;
+import com.example.datastoreapi.model.CategoryRequest;
+import com.example.datastoreapi.model.CategoryResponse;
 import com.example.datastoreapi.model.MerchRequest;
 import com.example.datastoreapi.model.MerchResponse;
 import org.modelmapper.ModelMapper;
@@ -9,6 +14,7 @@ import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -18,6 +24,9 @@ public class MerchServiceImpl implements MerchService {
 
     @Autowired
     MerchRepository merchRepository;
+
+    @Autowired
+    CategoryRepository categoryRepository;
 
     static ModelMapper modelMapper = new ModelMapper();
 
@@ -29,9 +38,15 @@ public class MerchServiceImpl implements MerchService {
     public MerchResponse createMerch(MerchRequest merchRequest) {
         merchRequest.setMerchId(UUID.randomUUID().toString());
         MerchEntity merchEntity = modelMapper.map(merchRequest, MerchEntity.class);
+        merchEntity.setCategory(categoryRepository
+                .findById(merchRequest.getCategory())
+                .orElseThrow(() -> new ResourceNotFoundException("category "+merchRequest.getCategory() + " not found")));
+        System.out.println(merchEntity.getCategory().toString());
         merchEntity = merchRepository.save(merchEntity);
         return modelMapper.map(merchEntity, MerchResponse.class);
     }
+
+
 
     @Override
     public MerchResponse getMerchById(String merchId) {
@@ -44,19 +59,16 @@ public class MerchServiceImpl implements MerchService {
                 .map(merch -> modelMapper.map(merch, MerchResponse.class)).collect(Collectors.toList());
     }
 
-//    @Override
-//    public List<MerchResponse> getMerchByBrandName(String brandName) {
-//        return merchRepository.getMerchEntitiesByBrandName(brandName).stream().
-//                map(merchEntity -> modelMapper.map(merchEntity,MerchResponse.class)).
-//                collect(Collectors.toList());
-//
-//    }
 
     @Override
-    public List<MerchResponse> getMerchByCategory(String category) {
-        return merchRepository.getMerchEntitiesByCategory(category).stream().
-                map(merchEntity -> modelMapper.map(merchEntity,MerchResponse.class)).
-                collect(Collectors.toList());
+    public List<MerchResponse> getMerchByCategoryId(Long id) {
+        return merchRepository.findAllByCategory(categoryRepository
+                        .findById(id)
+                        .orElseThrow(() -> new ResourceNotFoundException("category "+ id + " not found")))
+                .stream()
+                        .map(merchEntity -> modelMapper
+                                .map(merchEntity,MerchResponse.class))
+                                .collect(Collectors.toList());
     }
 
     @Override

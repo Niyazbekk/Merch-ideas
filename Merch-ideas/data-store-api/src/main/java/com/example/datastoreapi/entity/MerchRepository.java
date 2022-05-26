@@ -10,8 +10,10 @@ public interface MerchRepository extends CrudRepository<MerchEntity, Long> {
     List<MerchEntity> getMerchEntitiesBy();
 
     MerchEntity getMerchEntityByMerchId(String merchId);
-    List<MerchEntity> getMerchEntitiesByCategory(String category);
+//    List<MerchEntity> getMerchEntitiesByCategory(Long category);
 //    List<MerchEntity> getMerchEntitiesByBrandName(String brandName);
+
+    List<MerchEntity> findAllByCategory(CategoryEntity entity);
 
     @Transactional
     void deleteMerchEntityByMerchId(String merchId);
