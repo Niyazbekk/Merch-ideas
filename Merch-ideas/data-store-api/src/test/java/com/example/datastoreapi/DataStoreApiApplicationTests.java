@@ -1,10 +1,10 @@
-package com.example.commentapi;
+package com.example.datastoreapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class CommentApiApplicationTests {
+class DataStoreApiApplicationTests {
 
     @Test
     void contextLoads() {
